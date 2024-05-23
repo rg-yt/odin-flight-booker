@@ -6,3 +6,11 @@
 %w[DEN JFK LAX BWI PHL IAD LGA ABQ].each do |code|
   Airport.create(code:)
 end
+
+Airport.all.each do |arrival|
+  Airport.all.each do |depart|
+    next if arrival == depart
+
+    Flight.create(arrival_airport_id: arrival.id, departure_airport_id: depart.id)
+  end
+end
