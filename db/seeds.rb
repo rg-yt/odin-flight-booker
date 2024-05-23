@@ -11,6 +11,7 @@ Airport.all.each do |arrival|
   Airport.all.each do |depart|
     next if arrival == depart
 
-    Flight.create(arrival_airport_id: arrival.id, departure_airport_id: depart.id)
+    Flight.create(arrival_airport_id: arrival.id, departure_airport_id: depart.id, departure_datetime: rand(1.year.ago..Time.now),
+                  flight_duration: rand(1.hour...10.hour))
   end
 end

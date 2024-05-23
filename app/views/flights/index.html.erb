@@ -1,0 +1,11 @@
+<ul>
+  <%= @flights.count %>
+  <% @flights.each do |flight| %>
+  <li>
+    <%= flight.arrival_airport.code  %> -
+    <%= flight.departure_airport.code  %> : 
+    <%= flight.departure_datetime.strftime("%m/%d/%Y at %I:%M%p") %>
+
+  </li>
+  <% end %>
+</ul>
