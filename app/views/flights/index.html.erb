@@ -1,6 +1,6 @@
 <h1 class="text-xl">Flight Booker</h1>
 
-<%= form_with(url: flights_path, method: :get) do %>
+<%= form_with(url: flights_path, method: :get, class: 'flex flex-col gap-4') do %>
   
   <div>
     <label for="departure_code">From:</label>
@@ -22,7 +22,17 @@
     <%= select_tag(:date, options_for_select(@flight_dates)) %>
   </div>
 
-  <button type="submit" class="py-2 px-3 bg-blue-500 rounded-xl text-white block mt-5">Submit</button>
+  <div>
+    <button type="submit" class="py-2 px-3 bg-blue-400 rounded-xl text-white text-lg">Submit</button>
+    <%= button_to "Clear", flights_path, class: 'py-2 px-3 bg-red-400 rounded-xl text-white text-lg', method: :get %>
+  </div>
 <% end %>
 
+<% if @available_flights  %>
+  <ul>
+    <% @available_flights.each do |flight| %>
+      <li><%= flight.departure_airport.code %> - <%= flight.arrival_airport.code %> : <%= flight.departure_datetime.strftime("%m/%d/%Y") %></li>
+    <% end %>
+  </ul>
+<% end %>
 
